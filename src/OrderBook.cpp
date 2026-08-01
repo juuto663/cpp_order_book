@@ -22,7 +22,7 @@ enum class Side
 
 using Price = std::int32_t;
 using Quantity = std::uint32_t;
-using OrderId = std:uint64_t;
+using OrderId = std::uint64_t;
 
 
 struct LevelInfo {
@@ -146,9 +146,9 @@ private:
 		OrderPointers::iterator location_;
 	};
 
-	std::map<Price, OrderPointers, std::great<Price>> bids_;
+	std::map<Price, OrderPointers, std::greater<Price>> bids_;
 	std::map<Price, OrderPointers, std::less<Price>> asks_;
-	std::unordered_map<ORderId, OrderEntry> orders_;
+	std::unordered_map<OrderId, OrderEntry> orders_;
 
 	bool CanMatch(Side side, Price price) const
 	{
@@ -171,7 +171,7 @@ private:
 	Trades MatchOrders()
 	{
 		Trades trades;
-		trades.reserve(orders._size));
+		trades.reserve(orders._size()));
 
 		while (true)
 		{
@@ -184,13 +184,10 @@ private:
 			if (bidPrice < askPrice)
 				break;
 
-			if (bidPrice < askPrice)
-				break;
-
 			while (bids.size() && asks.size())
 			{
-				auto& bid = bids.front()
-				auto& asks = asks.front()
+				auto& bid = bids.front();
+				auto& ask = asks.front();
 
 				Quantity quantity = std::min(bid->GetRemainingQuantity(), ask->GetRemainingQuantity(); }
 
@@ -294,7 +291,7 @@ public:
 		return AddOrder(order.ToOrderPointer(existingOrder->GetOrderType()));
 	}
 
-	std::size_t Size() const { reutnr orders_.size(); }
+	std::size_t Size() const { return orders_.size(); }
 
 	OrderBookLevelInfos GetOrderInfoS() const 
 	{
@@ -303,7 +300,7 @@ public:
 		askInfos.reserve(orders_.size());
 	};
 
-	auto CreateLeveLInfos = [](Price price, const OrderPointers& orders)
+	auto CreateLevelInfos = [](Price price, const OrderPointers& orders)
 	{
 		return LevelInfo{ price, std::accumulate(orders.begin(), orders.end(), (Quantity)0, [](std:size_t runningSum, const OrderPointers& order) { return runing Sum + order->GetRemainingQuantity(); }) };
 	};
@@ -314,7 +311,7 @@ public:
 	for (const auto& [price, orders] : asks_)
       		askInfos.push_back(CreateLevelInfos(price, orders));
 
-	return OrderbookLevelInfos{ bidInfos, askInfos };
+	return OrderbookLevelInfos{ Infos, askInfos };
 	
 
 };
