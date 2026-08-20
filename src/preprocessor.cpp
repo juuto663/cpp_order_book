@@ -46,5 +46,9 @@ int main()
   std::cout << "This will not print\n"; // You do this to comment out a block of code that has a multiline comment since those are not nestable.
 #endif // until here
 
+#define FOO 89
+#ifdef FOO // this FOO does not get replaced because it is in another preprocessor directive. You can't nest them
+  std::cout << "FOO is " FOO << "\n";
+#endif
   return 0;
 }
