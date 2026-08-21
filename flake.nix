@@ -20,8 +20,15 @@
 					valgrind
 					clang-tools # Gives clangd (LSP), clang-format, clang-tidy
 				];
+				# Header-only libs go here so the compiler wrapper adds -isystem
+				buildInputs = with pkgs; [
+					plog
+				];
 			# Optional: set env vars for the shell session
 			shellHook = ''
+				# clangd uses compile_flags.txt, not NIX_CFLAGS_COMPILE, so it
+				# needs the include dirs through the clang driver's own env var
+				export CPLUS_INCLUDE_PATH="${pkgs.lib.makeSearchPathOutput "dev" "include" [ pkgs.plog ]}''${CPLUS_INCLUDE_PATH:+:$CPLUS_INCLUDE_PATH}"
 				echo "C++ dev shell ready"
 			'';
 		};
