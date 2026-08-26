@@ -13,7 +13,8 @@
 			# the dev shell - when you get when you run 'nix develop'
 			devShells.${system}.default = pkgs.mkShell {
 				packages = with pkgs; [
-					gcc
+					clang # Gives clang++ (the compiler driver). Pinned here so builds
+					      # don't silently fall through to /usr/bin/clang++.
 					cmake
 					gnumake
 					gdb
