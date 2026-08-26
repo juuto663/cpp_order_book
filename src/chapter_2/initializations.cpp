@@ -24,8 +24,8 @@ int main()
   // is answer to that with one way that works well and isn't confused with function calls or assignments
   // It also can initialize objects witha list of values rather than a single value which is why we call it list-initialization
   int d{7};    // direct-list-initialization (initial value in braces). Preferred way of initializing
-  int d = {7}; // copy-list-initialization. Rarely used.
-  int e{};     // value-initialization (empty braces). Normally initializes to 0 (or whatever makes the most sense for 0 depending on the type)
+  int e = {7}; // copy-list-initialization. Rarely used.
+  int f{};     // value-initialization (empty braces). Normally initializes to 0 (or whatever makes the most sense for 0 depending on the type)
                // If it initializes to 0, we call it zero-initialization
 
   // As of C++17, copy/direct/direct-list-initialization behave identically in most cases. They do differ though. One of the reasons

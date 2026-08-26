@@ -47,8 +47,10 @@ int main()
 #endif // until here
 
 #define FOO 89
-#ifdef FOO // this FOO does not get replaced because it is in another preprocessor directive. You can't nest them
-  std::cout << "FOO is " FOO << "\n";
+#ifdef FOO // the FOO here is NOT replaced by 89. #ifdef asks "is this name defined?",
+           // so it needs the name itself, not its value.
+  std::cout << "FOO is " << FOO << "\n"; // this FOO IS replaced. It's ordinary code, not a
+                                         // directive, so the line becomes: << "FOO is " << 89 <<
 #endif
   return 0;
 }
